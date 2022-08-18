@@ -1,0 +1,4 @@
+#Thu Aug 18 19:07:43 IST 2022
+base.0=/home/a/Downloads/ToDo_List _Demo/build/app/intermediates/transforms/r8/release/0/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
