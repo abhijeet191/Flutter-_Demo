@@ -21,6 +21,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   String uid = '';
+
   @override
   void initState() {
     getuid();
@@ -29,20 +30,24 @@ class _HomeState extends State<Home> {
 
   getuid() async {
     FirebaseAuth auth = FirebaseAuth.instance;
-   // final FirebaseUser user = await auth.currentUser;
-    setState(() {
-     // uid = user.uid;
-    });
+    // final FirebaseUser user = await auth.currentUser;
+
   }
 
   @override
   Widget build(BuildContext context) {
+    var now = new DateTime.now();
+    var formatter = new DateFormat('yyyy-MM-dd');
+    String formattedDate = formatter.format(now);
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text(name),
-        actions: [
+      backgroundColor: Color(0xFF2D398E),
 
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: Text("Welcome "+name, style: TextStyle(color: Colors.white),),
+        leading: IconButton(icon: Icon(Icons.menu, color: Colors.white70,),),
+        actions: [
           IconButton(
               icon: CircleAvatar(
                 backgroundImage: NetworkImage(
@@ -54,20 +59,34 @@ class _HomeState extends State<Home> {
               onPressed: () async {
                 Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {return FirstScreen();}), ModalRoute.withName('/'));
               }),
-          IconButton(
-              icon: Icon(Icons.logout),
-              onPressed: () async {
-                await googleSignIn.signOut();
-                Fluttertoast.showToast(msg: 'Log Out Successfully');
-                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {return LoginPage();}), ModalRoute.withName('/'));
-              }),
+
         ],
       ),
-      body: Container(
-        padding: EdgeInsets.all(10),
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: StreamBuilder(
+    body: Column(
+    children: <Widget>[
+    Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+    SizedBox(height: 20,),
+
+    Text(DateFormat.Hms().format(DateTime.now()).toString(), style: TextStyle(color: Colors.white70, fontSize: 45, fontWeight: FontWeight.bold),),
+
+    Text("             "+formattedDate.toString(), style: TextStyle(color: Colors.white, fontSize: 16,),),
+
+    SizedBox(height: 20,),
+
+    ],
+    ), //to show the clock
+
+    Expanded(
+    child: Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(topRight: Radius.circular(30), topLeft: Radius.circular(30)),
+          image: DecorationImage(
+              image: AssetImage('assets/2.jpg'),
+              fit: BoxFit.cover)),padding: EdgeInsets.all(10),
+      child: StreamBuilder(
           stream: FirebaseFirestore.instance
               .collection('tasks')
               .doc(name)
@@ -79,94 +98,61 @@ class _HomeState extends State<Home> {
                 child: CircularProgressIndicator(),
               );
             } else {
+
               final docs = snapshot.data.documents;
 
+
               return ListView.builder(
-                itemCount: docs.length,
-                itemBuilder: (context, index) {
-                  var time = (docs[index]['timestamp'] as Timestamp).toDate();
+                  itemCount: docs.length,
+                  itemBuilder: (context, index){
+                    var time = (docs[index]['timestamp'] as Timestamp).toDate();
+                    return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Description(
+                                    title: docs[index]['title'],
+                                    description: docs[index]['description'],
+                                    time1: DateFormat.yMd().add_jm().format(time).toString(),
+                                    name: name,
+                                    time2: docs[index]['time'],
 
-                  return InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Description(
-                                title: docs[index]['title'],
-                                description: docs[index]['description'],
+                                  )));
+                        },
 
-                              )));
-                    },
                     child: Container(
-                      margin: EdgeInsets.only(bottom: 10),
                       decoration: BoxDecoration(
-                          color: Color(0xC6ABBAEE),
-                          borderRadius: BorderRadius.circular(10)),
+                          color: Colors.black26,
+                          borderRadius: BorderRadius.circular(30)),
                       height: 90,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                    margin: EdgeInsets.only(left: 20),
-                                    child: Text(docs[index]['title'],
-                                        style:
-                                        GoogleFonts.roboto(fontSize: 20))),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Container(
-                                    margin: EdgeInsets.only(left: 20),
-                                    child: Text(
-                                        DateFormat.yMd().add_jm().format(time)))
-                              ]),
-                          Container(
-                              child:
-                              IconButton(
-                                  padding: const EdgeInsets.only(left: 130.0),
-                                  icon: Icon(
-                                    Icons.edit,
-                                  ),
-                                  onPressed: () async {
-                                    Navigator.push(
-                                        context, MaterialPageRoute(builder: (context) => EditTask(title: docs[index]['title'],
-                                      description: docs[index]['description'],time1: docs[index]['time'],
-                                    )));
-                                  })),
-                          Container(
+                      child: ListTile(
 
-                              child:
-                              IconButton(
-                                  icon: Icon(
-                                    Icons.delete,
-                                  ),
-                                  onPressed: () async {
-                                    await Firestore.instance
-                                        .collection('tasks')
-                                        .doc(name)
-                                        .collection('mytasks')
-                                        .doc(docs[index]['time'])
-                                        .delete();
-                                    Fluttertoast.showToast(msg: 'Delete Task Successfully');
-                                  }))
+                        contentPadding: EdgeInsets.only(left: 25, right: 32, top: 8, bottom: 8),
+                        title: Text(docs[index]['title'], style : TextStyle(color: Colors.black87,fontSize: 20,
+                            fontWeight: FontWeight.bold),),
+                        subtitle: Text(DateFormat.yMd().add_jm().format(time).toString(), style: TextStyle(color: Colors.black45,fontSize: 15,
+                            fontWeight: FontWeight.bold),),
 
-                        ],
+                        trailing: Icon(Icons.check_circle, color: Colors.greenAccent,),
                       ),
-                    ),
-                  );
-                },
+                      margin: EdgeInsets.only(bottom: 8, left: 10, right: 10),
+                    ));
+                  }
               );
+
+
             }
           },
         ),
         // color: Colors.red,
       ),
+    )
+      ],
+    ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add, color: Colors.white),
-          backgroundColor: Theme.of(context).primaryColor,
+          backgroundColor: Color(0xFF2D398E),
           onPressed: () {
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => AddTask()));

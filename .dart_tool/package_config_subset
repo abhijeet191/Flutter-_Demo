@@ -1,7 +1,7 @@
 ToDo_flutter
 2.7
-file:///home/a/Downloads/sign_in_flutter-master/
-file:///home/a/Downloads/sign_in_flutter-master/lib/
+file:///home/a/Downloads/ToDo_List%20_Demo/
+file:///home/a/Downloads/ToDo_List%20_Demo/lib/
 async
 2.12
 file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/async-2.6.1/
@@ -56,8 +56,8 @@ file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/ff
 file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/ffi-1.2.1/lib/
 file
 2.12
-file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/file-6.1.3/
-file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/file-6.1.3/lib/
+file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/file-6.1.4/
+file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/file-6.1.4/lib/
 firebase_auth
 2.0
 file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.18.4+1/
@@ -126,6 +126,10 @@ meta
 2.12
 file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/meta-1.3.0/
 file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/meta-1.3.0/lib/
+page_transition
+2.3
+file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-1.1.7+6/
+file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-1.1.7+6/lib/
 path
 2.12
 file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.8.0/
@@ -170,6 +174,14 @@ quiver
 2.0
 file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/quiver-2.1.5/
 file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/quiver-2.1.5/lib/
+rxdart
+2.0
+file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.22.2/
+file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.22.2/lib/
+simple_animations
+2.4
+file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/simple_animations-1.3.12/
+file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/simple_animations-1.3.12/lib/
 source_span
 2.12
 file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/source_span-1.8.1/
@@ -194,6 +206,10 @@ test_api
 2.12
 file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.3.0/
 file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.3.0/lib/
+transparent_image
+1.24
+file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/transparent_image-1.0.0/
+file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/transparent_image-1.0.0/lib/
 typed_data
 2.12
 file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/typed_data-1.3.0/
