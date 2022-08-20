@@ -109,7 +109,7 @@ class _AddTaskState extends State<AddTask> {
 
                 borderRadius: BorderRadius.circular(30.0),
               ),
-                  hintText: "   Description",
+                  hintText: "Description",
                       hintStyle: TextStyle(fontSize: 20.0, color: Colors.white70),
                //   contentPadding: const EdgeInsets.all(20.0),
 

@@ -15,9 +15,19 @@ class FirstScreen extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
 
+          automaticallyImplyLeading: false,
         //leading: IconButton(icon: Icon(Icons.menu, color: Colors.white70,),),
-        actions: [
-        ],
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.home,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {return Home();}), ModalRoute.withName('/'));
+              },
+            )
+          ],
     ),
     body: Column(
     children: <Widget>[
@@ -87,7 +97,7 @@ class FirstScreen extends StatelessWidget {
               SizedBox(height: 40),
 
               Container(
-                  width: 300,
+                  width: 350,
                   height: 50,
                   child: GestureDetector(
                     onTap: () async {

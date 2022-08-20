@@ -45,8 +45,9 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
+        automaticallyImplyLeading: false,
         title: Text("Welcome "+name, style: TextStyle(color: Colors.white),),
-        leading: IconButton(icon: Icon(Icons.menu, color: Colors.white70,),),
+      //  leading: IconButton(icon: Icon(Icons.menu, color: Colors.white70,),),
         actions: [
           IconButton(
               icon: CircleAvatar(

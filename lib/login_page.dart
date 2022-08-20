@@ -102,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
       highlightElevation: 0,
       borderSide: BorderSide(color: Colors.grey),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+        padding: const EdgeInsets.fromLTRB(0, 10,2, 10),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
