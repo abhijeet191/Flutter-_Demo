@@ -212,6 +212,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "nested",
+      "rootUri": "file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/nested-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "overlay_support",
       "rootUri": "file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/overlay_support-1.2.1",
       "packageUri": "lib/",
@@ -284,14 +290,14 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "quiver",
-      "rootUri": "file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/quiver-2.1.5",
+      "name": "provider",
+      "rootUri": "file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/provider-6.0.3",
       "packageUri": "lib/",
-      "languageVersion": "2.0"
+      "languageVersion": "2.12"
     },
     {
-      "name": "rxdart",
-      "rootUri": "file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.22.2",
+      "name": "quiver",
+      "rootUri": "file:///home/a/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/quiver-2.1.5",
       "packageUri": "lib/",
       "languageVersion": "2.0"
     },
@@ -380,7 +386,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2022-08-24T09:25:12.315265Z",
+  "generated": "2022-08-25T13:22:08.758158Z",
   "generator": "pub",
   "generatorVersion": "2.13.4"
 }

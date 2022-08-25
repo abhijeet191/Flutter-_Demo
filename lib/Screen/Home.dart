@@ -1,5 +1,6 @@
 
 import 'package:ToDo_flutter/Provider/TaskModel.dart';
+import 'package:ToDo_flutter/Provider/ListProvider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,6 +10,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:ToDo_flutter/sign_in.dart';
+import 'package:provider/provider.dart';
 
 import '../login_page.dart';
 import 'Description.dart';
@@ -19,6 +21,7 @@ import 'first_screen.dart';
 
 class Home extends StatefulWidget {
   @override
+
   _HomeState createState() => _HomeState();
 }
 
@@ -45,28 +48,13 @@ class _HomeState extends State<Home> {
   void getuid() async {
     ty=0;
     ty11=0;
-      var data = await FirebaseFirestore.instance
-          .collection('tasks')
-          .doc(name)
-          .collection('mytasks').get();
-        for (int i = 0; i < data.docs.length; i++) {
-            if(data.docs[i].data()['Type']=="Personal")
-            {
-              setState(() {
-                ty=ty+1;
-              });
-            }
-           if(data.docs[i].data()['Type']=="Business")
-           {
-          setState(() {
-            ty11=ty11+1;
-          });
-        }
-        }
+    TodoModel Todomodel =Provider.of(context,listen: false);
+    Todomodel.addTaskInList();
 
   }
   @override
   Widget build(BuildContext context) {
+    final count1 = Provider.of<TodoModel>(context);
     final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
     var now = new DateTime.now();
     var Formatetime = new DateFormat('d MMMM yyyy');
@@ -195,7 +183,7 @@ class _HomeState extends State<Home> {
                                   children: <Widget>[
                                     SizedBox(width: 40),
 
-                                    Text(ty.toString(),
+                                    Text(TodoModel.c1.toString(),
                                       textAlign: TextAlign.right,
                                       style: TextStyle(
                                         color: Colors.white,
@@ -203,7 +191,7 @@ class _HomeState extends State<Home> {
                                         fontSize: 18
                                     ),),
                                     SizedBox(width: 70),
-                                    Text(ty11.toString(), style: TextStyle(
+                                    Text(TodoModel.c2.toString(), style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w300,
                                         fontSize: 18
@@ -278,6 +266,7 @@ class _HomeState extends State<Home> {
 
                       width: double.infinity,
                       color: Color(0xBAE9E6EC),
+
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(20, 15,0, 10),
                         child: Row(
@@ -300,7 +289,64 @@ class _HomeState extends State<Home> {
                       ),
                       // color: Colors.red,
                     ),
-              Add(),
+                Container(
+                  height: 330,
+                  width: double.infinity,
+                  color: Color(0xBAE9E6EC),
+                    child: Consumer<TodoModel>(
+                      builder: (context, todo,child) {
+                          return ListView.builder(
+                              itemCount: todo.taskList.length,
+                              itemBuilder: (context, index){
+                                var time = todo.taskList[index].Time;
+                                return InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => Description(
+                                                title: todo.taskList[index].title,
+                                                description: todo.taskList[index].Des,
+                                                time1: todo.taskList[index].Time,
+                                                name: name,
+                                                time2: todo.taskList[index].Time,
+                                                type1: todo.taskList[index].Type,
+                                                place1: todo.taskList[index].Place,
+                                                t1:todo.taskList[index].T1,
+                                              )));
+
+                                    },
+
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        // color: Colors.black26,
+                                        //    borderRadius: BorderRadius.circular(30)
+                                        border: Border(
+                                          bottom: BorderSide(width: 0.4, color: Colors.black54),
+                                        ),
+                                      ),
+                                      height: 70,
+                                      child: ListTile(
+                                        leading: Image(image: AssetImage("assets/addnew.png"), height: 50.0),
+                                        contentPadding: EdgeInsets.only(left: 25, right: 32, top: -1, bottom: 8),
+                                        title: Text(todo.taskList[index].title, style : TextStyle(color: Colors.black87,fontSize: 20,
+                                            fontWeight: FontWeight.bold),),
+                                        subtitle: Text(todo.taskList[index].Des, style: TextStyle(color: Colors.black45,fontSize: 15,
+                                            fontWeight: FontWeight.bold),),
+                                        trailing: Text(todo.taskList[index].T1, style: TextStyle(color: Colors.black45,fontSize: 15,
+                                          fontWeight: FontWeight.bold,),),
+                                      ),
+                                      margin: EdgeInsets.only(bottom: 8, left: 10, right: 10),
+                                    ));
+
+                              }
+                          );
+
+
+                      },
+                    ),
+
+                ),
                   ],),
 
               )
@@ -321,84 +367,6 @@ class _HomeState extends State<Home> {
     );
 
   }
-  Add(){
-    return  Container(
-      height: 330,
-      width: double.infinity,
-      color: Color(0xBAE9E6EC),
-      child: StreamBuilder(
-        stream: FirebaseFirestore.instance
-            .collection('tasks')
-            .doc(name)
-            .collection('mytasks')
-            .snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          else {
-            ty=0;
-            ty11=0;
-            final docs = snapshot.data.documents;
-            return ListView.builder(
-                itemCount: docs.length,
-                itemBuilder: (context, index){
 
-
-                  //           Fluttertoast.showToast(msg: ty11.toString());
-                  var time = (docs[index]['timestamp'] as Timestamp).toDate();
-                  return InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Description(
-                                  title: docs[index]['title'],
-                                  description: docs[index]['description'],
-                                  time1: DateFormat.yMd().add_jm().format(time).toString(),
-                                  name: name,
-                                  time2: docs[index]['time'],
-                                  type1: docs[index]['Type'],
-                                  place1: docs[index]['Place'],
-                                  t1: docs[index]['T1'],
-                                )));
-
-                      },
-
-                      child: Container(
-
-                        decoration: BoxDecoration(
-                          // color: Colors.black26,
-                          //    borderRadius: BorderRadius.circular(30)
-                          border: Border(
-                            bottom: BorderSide(width: 0.4, color: Colors.black54),
-                          ),
-                        ),
-                        height: 70,
-                        child: ListTile(
-                          leading: Image(image: AssetImage("assets/addnew.png"), height: 50.0),
-                          contentPadding: EdgeInsets.only(left: 25, right: 32, top: -1, bottom: 8),
-                          title: Text(docs[index]['title'], style : TextStyle(color: Colors.black87,fontSize: 20,
-                              fontWeight: FontWeight.bold),),
-                          subtitle: Text(docs[index]['description'], style: TextStyle(color: Colors.black45,fontSize: 15,
-                              fontWeight: FontWeight.bold),),
-                          trailing: Text(docs[index]['T1'], style: TextStyle(color: Colors.black45,fontSize: 15,
-                            fontWeight: FontWeight.bold,),),
-                        ),
-                        margin: EdgeInsets.only(bottom: 8, left: 10, right: 10),
-                      ));
-                  setState(() {});
-                }
-            );
-
-          }
-        },
-      ),
-      // color: Colors.red,
-    );
-
-  }
 }
 

@@ -35,7 +35,7 @@ dependencies:
   fluttertoast:
   page_transition: ^1.1.4
   simple_animations: ^1.3.3
-  rxdart: 0.22.2
+  provider: ^6.0.3
 
 dev_dependencies:
   flutter_test:
