@@ -24,6 +24,7 @@ class FirstScreen extends StatelessWidget {
                 color: Colors.white,
               ),
               onPressed: () {
+
                 Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {return Home();}), ModalRoute.withName('/'));
               },
             )

@@ -7,68 +7,77 @@ import 'Home.dart';
 import 'edit_task.dart';
 
 class Description extends StatelessWidget {
-  final String title, description,time1,name,time2;
+  final String title, description,time1,name,time2,type1,place1,t1;
 
-  const Description({Key key, this.title, this.description,this.time1,this.name,this.time2}) : super(key: key);
+  const Description({Key key, this.title, this.description,this.time1,this.name,this.time2,this.type1,this.place1,this.t1}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //Image.asset("assets/3.jpg",width: MediaQuery.of(context).size.width,fit: BoxFit.fitWidth,),
-      backgroundColor: Color(0xFF2D398E),
+      resizeToAvoidBottomInset: false, // set it to fal
+      backgroundColor: Color(0xFD534797),
 
       appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.blueAccent, //change your color here
+        ),
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text("Home", style: TextStyle(color: Colors.white),),
+        centerTitle: true,
+        title: Text("View Things",  style: GoogleFonts.roboto(fontSize: 18),),
+
         //leading: IconButton(icon: Icon(Icons.menu, color: Colors.white70,),),
         actions: [
-           ],
+          IconButton(
+              icon: Icon(Icons.settings,color: Colors.blueAccent,)
+          )
+        ],
       ),
 
-    body: Column(
-
-    children: <Widget>[
-    Column(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    children: <Widget>[
-      SizedBox(height: 10,),
-      //Spacer(),
-      Text(title, style: TextStyle(color: Colors.white70, fontSize: 35, fontWeight: FontWeight.bold),),
-      SizedBox(height: 10,),
-      Text(time1, style: TextStyle(color: Colors.white, fontSize: 16,),),
-
-      SizedBox(height: 10,),
-
-    ],
-    ), //to show the clock
-
-    Expanded(
-    child:Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(topRight: Radius.circular(30), topLeft: Radius.circular(30)),
-          image: DecorationImage(
-              image: AssetImage('assets/5.jpg'),
-              fit: BoxFit.cover)),padding: EdgeInsets.all(10),
+    body: Container(
 
       child: Column(
           children: <Widget>[
             Container(
+
               decoration: BoxDecoration(borderRadius: BorderRadius.only(topRight: Radius.circular(30), topLeft: Radius.circular(30),bottomLeft:Radius.circular(30),bottomRight: Radius.circular(30) ), color: Colors.black54),
 
-
-              padding: EdgeInsets.symmetric(horizontal: 24,vertical: 40),
+              padding:  EdgeInsets.all(25.120),
+             // padding: EdgeInsets.symmetric(vertical: 100),
               child: Column(
+
                 children: <Widget>[
+              //    SizedBox(height: 30,),
+                  Text(title, style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    letterSpacing: 0.6,
+                    wordSpacing: 0.6,
+                  ),),
+                  SizedBox(height: 15,),
+                  Text(type1, style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    letterSpacing: 0.6,
+                    wordSpacing: 0.6,
+                  ),),
+                  SizedBox(height: 30,),
+
                   Row(
                     children: <Widget>[
                       Text("Description -", style: TextStyle(
                           color: Colors.white70,
                           fontWeight: FontWeight.w700,
-                          fontSize: 20
+                          fontSize: 16
+                      ),),
+                      SizedBox(width: 160),
+                      Text("Time -"+ t1, style: TextStyle(
+                          color: Colors.white70,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 16
                       ),),
                                           ],
                   ),
+
                   SizedBox(height: 30,),
                   Text(description, style: TextStyle(
                     color: Colors.white,
@@ -84,7 +93,7 @@ class Description extends StatelessWidget {
                             onTap: () async {
                               Navigator.push(
                                   context, MaterialPageRoute(builder: (context) => EditTask(title: title,
-                                description: description,time1: time2,
+                                description: description,time1: time2,type1: type1,place1: place1,t1: t1,
                               )));
                              // Fluttertoast.showToast(msg: 'Delete Task Successfully');
                             },
@@ -153,9 +162,6 @@ class Description extends StatelessWidget {
           ],
         ),
       ),
-    )
-    ],
-    ),
 
     );
   }

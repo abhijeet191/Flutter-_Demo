@@ -1,11 +1,11 @@
 
 class TaskModel {
- String title;
- String detail;
+ String per;
+ String buis;
 
- String get getTitle => title;
- String get getDetail => detail;
+ String get getTitle => per;
+ String get getDetail => buis;
 
- TaskModel(this.title, this.detail);
+ TaskModel(this.per, this.buis);
 
 }

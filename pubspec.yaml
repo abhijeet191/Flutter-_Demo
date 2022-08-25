@@ -26,6 +26,8 @@ dependencies:
   firebase_core: ^0.5.0
   firebase_auth: ^0.18.0+1
   google_sign_in: ^4.5.3
+  firebase_messaging: ^7.0.3
+  overlay_support: ^1.2.1
   cloud_firestore:
   transparent_image: 1.0.0
   google_fonts:
@@ -63,6 +65,13 @@ flutter:
    - assets/6.jpg
    - assets/7.jpg
    - assets/8.jpg
+   - assets/12.jpg
+   - assets/15.jpg
+   - assets/16.jpg
+   - assets/addnew.png
+   - assets/icon1.png
+   - assets/icon2.png
+   - assets/edit.png
    - assets/background.jpg
   #  # An image asset can rer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

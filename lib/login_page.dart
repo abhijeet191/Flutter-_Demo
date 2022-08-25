@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: 20,
                 ),
                 FadeAnimation(
-                    1,
+                    2,
                     Text(
                       "ToDo",
                       style: TextStyle(
@@ -88,13 +88,9 @@ class _LoginPageState extends State<LoginPage> {
       onPressed: () {
         signInWithGoogle().then((result) {
           if (result != null) {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) {
-                  return Home();
-                },
-              ),
-            );
+           Navigator.of(context).push(MaterialPageRoute(builder: (context) {return Home();},),);
+           // Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {return Home();}), ModalRoute.withName('/'));
+
           }
         });
       },
@@ -111,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: const EdgeInsets.only(left: 10),
               child: Text(
-                'Sign in with Google',
+                'Sign in Google',
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.grey,
