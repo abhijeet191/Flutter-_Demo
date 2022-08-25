@@ -26,9 +26,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  String uid = '';
-  static int ty=0;
-  static int ty11=0;
 
   @override
   void initState() {
@@ -46,23 +43,21 @@ class _HomeState extends State<Home> {
   }
 
   void getuid() async {
-    ty=0;
-    ty11=0;
+
     TodoModel Todomodel =Provider.of(context,listen: false);
     Todomodel.addTaskInList();
 
   }
   @override
   Widget build(BuildContext context) {
-    final count1 = Provider.of<TodoModel>(context);
+     Provider.of<TodoModel>(context);
     final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
     var now = new DateTime.now();
     var Formatetime = new DateFormat('d MMMM yyyy');
     var formatter = new DateFormat('yyyy-MM-dd');
     String formattedDate = formatter.format(now);
     String formattedtime = Formatetime.format(now);
-    String Taskcount1="0";
-    String Taskcount2="0";
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
      key: _scaffoldKey,
@@ -83,10 +78,7 @@ class _HomeState extends State<Home> {
                     backgroundColor: Colors.transparent,
                   ),
                   onPressed: () async {
-                    setState(() {
-                      ty=0;
-                      ty11=0;
-                    });
+
                     Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {return FirstScreen();}), ModalRoute.withName('/'));
                   }),
               //UserAccountDrawerHeader
@@ -95,10 +87,6 @@ class _HomeState extends State<Home> {
               leading: const Icon(Icons.person),
               title: const Text(' My Profile '),
               onTap: () {
-                setState(() {
-                  ty=0;
-                  ty11=0;
-                });
                 Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {return FirstScreen();}), ModalRoute.withName('/'));
               },
             ),
